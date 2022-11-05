@@ -81,7 +81,7 @@ def profile():
 @app.route('/main', methods=['POST','GET'])
 def main():
     if request.method == "POST":
-        return render_template("HealthSetup.html")
+        return render_template("Prescriptions.html")
     else:
         return render_template("HealthSetup.html")
 
