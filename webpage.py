@@ -43,7 +43,7 @@ def register():
             return render_template("register.html", alreadyexists = "", mismatch = "Passwords do not match !",un = user, pas = password, em = email)
 
     else: 
-        return render_template("register.html",alreadyexists = "", mismatch = "",un = user, pas = password, em = email)    
+        return render_template("register.html",alreadyexists = "", mismatch = "",un = "", pas = "", em = "")    
 
 @app.route('/f_signin', methods=['POST','GET'])
 def f_signin():
