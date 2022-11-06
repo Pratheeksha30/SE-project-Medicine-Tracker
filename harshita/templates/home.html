@@ -1,0 +1,17 @@
+{% extends 'base1.html' %}
+
+{% block content %}  
+    <h2 class="title">Welcome </h2>
+    <form method = "POST">
+      <div class="row row-space">
+          <div class="input-group">
+            <label style="text-overflow:hidden; display: inline; font-size: large;" class="label" for="reg">Register with Username
+            <input class="label" id="reg"type="radio" name="action" value="Register"></label><br><br>
+            <label style="text-overflow:hidden; display: inline; font-size:large" class="label" for="sign">Or sign in if you already have an account
+            <input class="label" id="sign"type="radio" name="action" value="signin"></label><br><br>
+          </div>
+      </div>
+          
+          <button class="btn btn--radius-2 btn--blue" type="submit">Continue</button>
+    </form>   
+{% endblock %}

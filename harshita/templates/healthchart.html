@@ -1,0 +1,26 @@
+{% extends 'base3.html' %}
+
+{% block content %}  
+<h2 class="title">Daily log</h2>
+    <form method="POST">
+        <div class="row row-space">
+            <div class="col-2">
+                <div class="input-group">
+                    <label class="label">BP</label>
+                    <input class="input--style-4" type="number" name="bp"><br><br>
+                    <label class="label">Sugar</label>
+                    <input class="input--style-4" type="number" name="sugar"><br><br>
+
+                    <div class="p-t-15">
+                        <button class="btn btn--radius-2 btn--blue" type="submit">Add</button>
+                    </div>
+
+                    <div class="p-t-15">
+                        <br><br> <button class="btn btn--radius-2 btn--blue" type="submit">See charts</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}

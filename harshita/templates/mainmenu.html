@@ -1,0 +1,54 @@
+{% extends 'base3.html' %}
+
+{% block content %}  
+
+<form method = "POST">
+<div class="reminders wrapper--w680">
+    <div class="card bg-gra-01 card-4">
+        <div class="card-body">
+            <h2 class="title">Reminders</h2>
+            <h1 style="font-weight:300; font-size:medium;">blah blah blahh....</h1>
+            <div class="p-t-15">
+                <button class="btn btn--radius-2 btn--blue" type="submit"  name="action" value="reminder">Reminder</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="health_info wrapper--w680">
+    <div class="card bg-gra-01 card-4">
+        <div class="card-body">
+            <h2 class="title">Health Chart </h2>
+            <h1 style="font-weight:300; font-size:medium;">blah blah blahh....</h1>
+            <div class="p-t-15">
+                <button class="btn btn--radius-2 btn--blue" type="submit" name="action" value="health">ADD</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="prescription wrapper--w680">
+    <div class="card bg-gra-01 card-4">
+        <div class="card-body">
+            <h2 class="title">Prescriptions </h2>
+            <h1 style="font-weight:300; font-size:medium;">blah blah blahh....</h1>
+            <div class="p-t-15">
+                <button class="btn btn--radius-2 btn--blue" type="submit" name="action" value="prescription">Check Out</button>
+            </div>
+        </div>
+    </div>
+</div>    
+
+<div class="profile wrapper--w680">
+    <div class="card bg-gra-01 card-4">
+        <div class="card-body">
+            <h2 class="title">Profile </h2>
+            <h1 style="font-weight:300; font-size:medium;">blah blah blahh....</h1>
+            <div class="p-t-15">
+                <button class="btn btn--radius-2 btn--blue" type="submit" name="action" value="profile">Check Out</button>
+            </div>
+        </div>
+    </div>
+</div> 
+</form>
+{% endblock %}
