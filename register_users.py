@@ -16,3 +16,4 @@ def ad(Usid,password,email,usr):
         conn.commit()
         conn.close()
         return 1
+
