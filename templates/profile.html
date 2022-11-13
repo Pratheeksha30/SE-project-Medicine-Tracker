@@ -1,0 +1,59 @@
+{% extends 'base3.html' %}
+
+{% block content %}  
+<h1 style="font-weight:300; font-size:xxx-large; color: white;text-align: center;">~ {{nm}} ~</h1><br>
+<div class="reminders wrapper--w680">
+    <div class="card bg-gra-01 card-4">
+        <div class="card-body">
+            <h2 class="title">Reminders</h2>
+            {% for med in queue %}
+            <h1 style="font-weight:300; font-size:large;">You need to take {{med.d}} dose(s) of {{med.m}} at {{med.t}}.</h1><br>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="health_info wrapper--w680">
+    <div class="card bg-gra-01 card-4">
+        <div class="card-body">
+            <h2 class="title">Health Chart</h2>
+            <h1 style="font-weight:300; font-size:large;">Age : {{age}}</h1>
+            <h1 style="font-weight:300; font-size:large;">Gender : {{gen}}</h1>
+            <h1 style="font-weight:300; font-size:large;">Height : {{h}}</h1>
+            <h1 style="font-weight:300; font-size:large;">Weight : {{w}}</h1>
+            <h1 style="font-weight:300; font-size:large;">Blood group : {{bg}}</h1>
+            <h1 style="font-weight:300; font-size:large;">Allergies : {{all}}</h1>
+            <h1 style="font-weight:300; font-size:large;">Health conditions : {{hc}}</h1><br>
+            <form method = "POST">
+                <button class="btn btn--radius-2 btn--blue" type="submit" name = 'submit_button' value="update health">Update</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="prescription wrapper--w680">
+    <div class="card bg-gra-01 card-4">
+        <div class="card-body">
+            <h2 class="title">Prescriptions ~~~ </h2>
+            {% for med in medicines %}
+            <h1 style="font-weight:300; font-size:large;">Medicine name : {{med.med}}</h1>
+            <h1 style="font-weight:300; font-size:medium;">Number of days : {{med.days}}</h1>
+            <h1 style="font-weight:300; font-size:medium;">Dosage : {{med.d_mor}} , {{med.d_noon}} , {{med.d_night}}</h1>
+            <h1 style="font-weight:300; font-size:medium;">Timings : {{med.t_mor}} , {{med.t_noon}} , {{med.t_night}}</h1><br>
+            {% endfor %}
+            <form method = "POST">
+                <button class="btn btn--radius-2 btn--blue" type="submit" name = 'submit_button' value="set reminder">Add / Remove</button>
+            </form>
+        </div>
+    </div>
+</div>  
+<div class="medlinks wrapper--w680">
+    <div class="card bg-gra-01 card-4">
+        <div class="card-body">
+            <h2 class="title">Buy more medicines ~~~ </h2>
+            <!-- <img src="E:\python\Medicine Tracker\medplus.jfif" alt="" width="40px" height="40px">
+            <img src="E:\python\Medicine Tracker\apollo.png" alt="" width="40px" height="40px"> -->
+            <a href="https://www.medplusmart.com/" style="font-size: large">MedPlus</a><br>
+            <a href="https://www.apollopharmacy.in/?variant=2&utm_source=google&utm_medium=cpc&utm_campaign=AP_Branding_Pharmacy_Bengaluru&utm_source=google&utm_medium=srb&campaignid=13369827335&adgroupid=123886170420&keyword=apollo%20pharmacy&device=c&adtype=&product_id=&utm_campaign=Apollo_Branding_Pharmacy_Bengaluru&utm_content=EM_Apollo_Pharmacy&gclid=Cj0KCQiAyMKbBhD1ARIsANs7rEG5_JiKi5x_N5O6vJ8r44JNozarBMwm3-qCFvClZ4t6w5aehDP2u-YaAihgEALw_wcB" style="font-size: large;">Apollo Pharmacy</a>
+        </div>
+    </div>
+</div>    
+{% endblock %}

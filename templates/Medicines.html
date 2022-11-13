@@ -1,0 +1,48 @@
+{% extends 'base2.html' %}
+
+{% block content %}  
+    {% for med in medicines %}
+        <h1 style="font-weight:300; font-size:large; color: white;">Medicine name : {{med.med}}</h1>
+        <h1 style="font-weight:300; font-size:medium; color: white;">Number of days : {{med.days}}</h1>
+        <h1 style="font-weight:300; font-size:medium; color: white;">Dosage : {{med.d_mor}},{{med.d_noon}},{{med.d_night}}</h1>
+        <h1 style="font-weight:300; font-size:medium; color: white;">Timings : {{med.t_mor}},{{med.t_noon}},{{med.t_night}}</h1><br>
+    {% endfor %}
+    <br>
+    <form method="POST">
+        <label class="label">Delete a prescription :</label>
+        <input class="input--style-4" type="text" name="med_del"><br><br>
+        <div class="p-t-15">
+            <button class="btn btn--radius-2 btn--blue" type="submit" name="add_delete" value="delete">Delete</button>
+        </div><br><br>
+    </form><br>
+    <h2 class="title">Add another prescription :</h2>
+    <form method="POST">
+        <div class="row row-space">
+            <div class="col-2">
+                <div class="input-group">
+                    <label class="label">Medicine name</label>
+                    <input class="input--style-4" type="text" name="med"><br><br>
+                    <label class="label">Number of days</label>
+                    <input class="input--style-4" type="number" name="days" min="1" value="0"><br><br>
+                    <label class="label">Dosage</label><br>
+                        <label style="text-overflow:hidden; font-size: large;" class="label" for="m">
+                            Morning:<input type="number" name="d_mor"  id="m" min="0" max="10" value="0"><br></label> &nbsp; &nbsp;
+                        <label style="text-overflow:hidden;font-size: large;" class="label" for="a">
+                            Afternoon: <input type="number" name="d_noon" id="a" min="0" max="10" value="0"><br></label> &nbsp; &nbsp;
+                        <label style="text-overflow:hidden;font-size: large;" class="label" for="n">
+                            Night: <input type="number" name="d_night" id="n" min="0" max="10" value="0"></label><br><br>
+                    <label class="label">Timings</label><br>
+                        <label style="text-overflow:hidden; font-size: large;" class="label" for="tm">
+                            Morning:<input type="time" name="t_mor"  id="tm" min="00:00" max="11:59"><br></label> &nbsp; &nbsp;
+                        <label style="text-overflow:hidden;font-size: large;" class="label" for="ta">
+                            Afternoon: <input type="time" name="t_noon" id="ta" min="12:00" max="17:59"><br></label> &nbsp; &nbsp;
+                        <label style="text-overflow:hidden;font-size: large;" class="label" for="tn">
+                            Night: <input type="time" name="t_night" id="tn" min="18:00" max="23:59" ></label>
+                </div>
+                <div class="p-t-15">
+                    <button class="btn btn--radius-2 btn--blue" type="submit" name="add_delete" value="add">Add</button>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
