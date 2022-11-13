@@ -39,7 +39,7 @@ def register():
         if password == cpassword:
             if(ad(user,password,email,usr)):
                 add_health(user,"","","","","","","")
-                add_meds(user,"",0,0,0,0,0,0,0)
+                add_meds(user,"",0,0,0,0,'','','')
                 return redirect(url_for("f_signin"))
             else:
                 return render_template("register.html",alreadyexists = "Username is already taken!", mismatch = "",un = user, pas = password, em = email)
@@ -124,8 +124,6 @@ def addMeds(username):
             t_mor = request.form['t_mor']
             t_noon = request.form['t_noon']
             t_night = request.form['t_night']
-            if (d_mor == 0 and t_mor != "") or (d_noon == 0 and t_noon != "") or (d_night == 0 and t_night != ""):
-                return redirect(url_for("profile",username = username)) 
             if med != "" and days != 0:
                 add_meds(username,med,days,d_mor,d_noon,d_night,t_mor,t_noon,t_night)
         return redirect(url_for("profile",username = username)) 

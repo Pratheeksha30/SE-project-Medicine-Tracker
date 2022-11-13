@@ -13,6 +13,8 @@ def list_meds(usid):
         return r
 
 def add_meds(usid,medicine,days,d_mor,d_noon,d_night,t_mor,t_noon,t_night):
+    if (d_mor == 0 and t_mor != '') or (d_noon == 0 and t_noon != '') or (d_night == 0 and t_night != ''):
+        return
     if usid != "" :
         conn = sqlite3.connect('UserMedicines.db')
         c=conn.cursor()

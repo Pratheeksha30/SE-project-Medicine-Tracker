@@ -16,7 +16,7 @@
         </div><br><br>
     </form><br>
     <h2 class="title">Add another prescription :</h2>
-    <form method="POST">
+    <form method="POST" name="form01">
         <div class="row row-space">
             <div class="col-2">
                 <div class="input-group">
@@ -32,11 +32,11 @@
                         <label style="text-overflow:hidden;font-size: large;" class="label" for="n">
                             Night: <input type="number" name="d_night" id="n" min="0" max="10" value="0"></label><br><br>
                     <label class="label">Timings</label><br>
-                        <label style="text-overflow:hidden; font-size: large;" class="label" for="tm">
+                        <label style="text-overflow:hidden; font-size: large;visibility: hidden;" class="label" for="tm">
                             Morning:<input type="time" name="t_mor"  id="tm" min="00:00" max="11:59"><br></label> &nbsp; &nbsp;
-                        <label style="text-overflow:hidden;font-size: large;" class="label" for="ta">
+                        <label style="text-overflow:hidden;font-size: large; visibility: hidden;" class="label" for="ta">
                             Afternoon: <input type="time" name="t_noon" id="ta" min="12:00" max="17:59"><br></label> &nbsp; &nbsp;
-                        <label style="text-overflow:hidden;font-size: large;" class="label" for="tn">
+                        <label style="text-overflow:hidden;font-size: large;visibility: hidden;" class="label" for="tn">
                             Night: <input type="time" name="t_night" id="tn" min="18:00" max="23:59" ></label>
                 </div>
                 <div class="p-t-15">
@@ -45,4 +45,30 @@
             </div>
         </div>
     </form>
+    <script type="text/javascript">
+        document.forms.form01.addEventListener('change', e => {
+            if (e.target.name == 'd_mor'){
+            if (e.target.value > 0){
+                document.getElementById('tm').style.visibility = 'visible';
+            }
+            else document.getElementById('tm').style.visibility = 'hidden';
+            }
+        });
+        document.forms.form01.addEventListener('change', e => {
+            if (e.target.name == 'd_noon'){
+            if (e.target.value > 0){
+                document.getElementById('ta').style.visibility = 'visible';
+            }
+            else document.getElementById('ta').style.visibility = 'hidden';
+            }
+        });
+        document.forms.form01.addEventListener('change', e => {
+            if (e.target.name == 'd_night'){
+            if (e.target.value > 0){
+                document.getElementById('tn').style.visibility = 'visible';
+            }
+            else document.getElementById('tn').style.visibility = 'hidden';
+            }
+        });
+    </script>
 {% endblock %}
