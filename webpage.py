@@ -99,7 +99,7 @@ def main(username):
         gen = request.form['gend']
         h = request.form['h']
         w = request.form['w']
-        bg = request.form['bg']
+        bg = request.form['bloodg']
         all = request.form['all']
         hc = request.form['hc']
         add_health(username,age,gen,h,w,bg,all,hc)
