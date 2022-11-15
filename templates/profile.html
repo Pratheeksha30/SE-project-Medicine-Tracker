@@ -4,11 +4,14 @@
 <h1 style="font-weight:300; font-size:xxx-large; color: white;text-align: center;">~ {{nm}} ~</h1><br>
 <div class="reminders wrapper--w680">
     <div class="card bg-gra-01 card-4">
-        <div class="card-body">
-            <h2 class="title">Reminders</h2>
+        <div class="card-body" >
+            <h2 class="title" style="position: relative; overflow:visible;">Reminders</h2>
+            <form method="post">
+                <p id="demo"></p>
             {% for med in queue %}
-            <h1 style="font-weight:300; font-size:large;">You need to take {{med.d}} dose(s) of {{med.m}} at {{med.t}}.</h1><br>
+            <h1 style="font-weight:300; font-size:large;">You need to take {{med.d}} dose(s) of {{med.m}} at {{med.t}}.<input type="checkbox" class="remindr" name="submit_button" id={{med.t}} value={{med.m}} onchange="this.form.submit()"></h1>
             {% endfor %}
+            </form>
         </div>
     </div>
 </div>
@@ -51,9 +54,43 @@
             <h2 class="title">Buy more medicines ~~~ </h2>
             <!-- <img src="E:\python\Medicine Tracker\medplus.jfif" alt="" width="40px" height="40px">
             <img src="E:\python\Medicine Tracker\apollo.png" alt="" width="40px" height="40px"> -->
-            <a href="https://www.medplusmart.com/" style="font-size: large">MedPlus</a><br>
-            <a href="https://www.apollopharmacy.in/?variant=2&utm_source=google&utm_medium=cpc&utm_campaign=AP_Branding_Pharmacy_Bengaluru&utm_source=google&utm_medium=srb&campaignid=13369827335&adgroupid=123886170420&keyword=apollo%20pharmacy&device=c&adtype=&product_id=&utm_campaign=Apollo_Branding_Pharmacy_Bengaluru&utm_content=EM_Apollo_Pharmacy&gclid=Cj0KCQiAyMKbBhD1ARIsANs7rEG5_JiKi5x_N5O6vJ8r44JNozarBMwm3-qCFvClZ4t6w5aehDP2u-YaAihgEALw_wcB" style="font-size: large;">Apollo Pharmacy</a>
+            <a href="https://www.medplusmart.com/" style="font-size: large" target="_blank">MedPlus</a><br>
+            <a target="_blank" href="https://www.apollopharmacy.in/?variant=2&utm_source=google&utm_medium=cpc&utm_campaign=AP_Branding_Pharmacy_Bengaluru&utm_source=google&utm_medium=srb&campaignid=13369827335&adgroupid=123886170420&keyword=apollo%20pharmacy&device=c&adtype=&product_id=&utm_campaign=Apollo_Branding_Pharmacy_Bengaluru&utm_content=EM_Apollo_Pharmacy&gclid=Cj0KCQiAyMKbBhD1ARIsANs7rEG5_JiKi5x_N5O6vJ8r44JNozarBMwm3-qCFvClZ4t6w5aehDP2u-YaAihgEALw_wcB" style="font-size: large;">Apollo Pharmacy</a>
         </div>
     </div>
 </div>    
+<script type="text/javascript">
+    // Set the date we're counting down to
+        var utc = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+        var e = document.getElementsByClassName('remindr');
+        if(e.length > 0){
+            var x = e[0].id;
+            var countDownDate = new Date(utc+' '+x).getTime();
+            var x = setInterval(function() {
+        
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+                
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Output the result in an element with id="demo"
+            document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+            
+            // If the count down is over, write some text 
+            if (distance < 0){
+                clearInterval(x);
+                document.getElementById("demo").innerHTML = "EXPIRED";
+                alert("It's time to to take your medicine !");
+            }
+            }, 1000);
+        }        
+    </script>
 {% endblock %}

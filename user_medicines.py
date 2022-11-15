@@ -34,7 +34,7 @@ def add_meds(usid,medicine,days,d_mor,d_noon,d_night,t_mor,t_noon,t_night):
             c.execute("SELECT * FROM {} where med = '{}'".format(usid,medicine))
             row=c.fetchall()
             if row != [] :
-                c.execute("UPDATE {} SET med = '{}',days = '{}', start = '{}', d_mor = '{}', d_noon = '{}', d_night = '{}', t_mor = '{}', t_noon = '{}', t_night = '{}';".format(usid,medicine,days,start,d_mor,d_noon,d_night,t_mor,t_noon,t_night))
+                c.execute("UPDATE {} SET days = '{}', start = '{}', d_mor = '{}', d_noon = '{}', d_night = '{}', t_mor = '{}', t_noon = '{}', t_night = '{}';".format(usid,days,start,d_mor,d_noon,d_night,t_mor,t_noon,t_night))
             else:
                 c.execute("INSERT INTO {} VALUES ('{}','{}','{}','{}','{}','{}','{}','{}','{}')".format(usid,medicine,days,start,d_mor,d_noon,d_night,t_mor,t_noon,t_night))
         conn.commit()
@@ -58,16 +58,20 @@ def remind(usid):
         row=c.fetchall()
         if row != []:
             if now.hour in range(0,12):
-                queue = [{'m':i[0],'t':i[6],'d':i[3]} for i in row if i[3] != 0]    
+                queue = [{'m':i[0],'t':i[6],'d':i[3]} for i in row if i[3] != 0 and now.replace(hour=int(i[6].split(':')[0]),minute=int(i[6].split(':')[1])) > now] 
             elif now.hour in range(12,18):
-                queue = [{'m':i[0],'t':i[7],'d':i[4]} for i in row if i[4] != 0]
+                queue = [{'m':i[0],'t':i[7],'d':i[4]} for i in row if i[4] != 0 and now.replace(hour=int(i[7].split(':')[0]),minute=int(i[7].split(':')[1])) > now.hour]
             else:
-                queue = [{'m':i[0],'t':i[8],'d':i[5]} for i in row if i[5] != 0]
+                queue = [{'m':i[0],'t':i[8],'d':i[5]} for i in row if i[5] != 0 and now.replace(hour=int(i[8].split(':')[0]),minute=int(i[8].split(':')[1])) > now.hour]
             # c.execute("UPDATE {} SET days = start - DATE();".format(usid))
             c.execute("DELETE FROM {} where days < 1".format(usid))
             conn.commit()
             conn.close()
             queue.sort(key=lambda x:x['t'])
+    return queue
+
+def checked(queue,med_name):
+    queue = [i for i in queue if i['m'] != med_name]
     return queue
 
 

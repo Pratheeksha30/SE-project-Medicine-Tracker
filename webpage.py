@@ -2,9 +2,12 @@ from flask import Flask, request, redirect, url_for, render_template
 from verify_signin import ver
 from register_users import ad 
 from user_health import add_health, retrieve
-from user_medicines import list_meds, add_meds, remove_med, remind
+from user_medicines import list_meds, add_meds, remove_med, remind, checked
 
 app = Flask(__name__)
+
+username = []
+queue = []
 
 @app.route('/')
 def default():
@@ -51,6 +54,7 @@ def register():
 
 @app.route('/f_signin', methods=['POST','GET'])
 def f_signin():
+    global username
     if request.method == "POST":
         usr = "User"
         user = request.form["nm"]
@@ -79,17 +83,19 @@ def signin():
 
 @app.route('/profile/<username>', methods=['POST','GET'])
 def profile(username):
+    global queue
     res = retrieve(username)
     medicines = list_meds(username)
-    queue = remind(username)
     if request.method == "POST":
         button_clicked = request.form['submit_button']
         if button_clicked == 'update health':
             return redirect(url_for("main",username = username)) 
         elif button_clicked == 'set reminder':
             return redirect(url_for("addMeds",username = username)) 
-    else:
-        return render_template("profile.html",nm = res[0],age = res[1], gen = res[2], h = res[3], w = res[4], bg = res[5], all = res[6], hc = res[7],medicines = medicines,queue = queue)
+        else:
+            queue = checked(queue,button_clicked)
+            
+    return render_template("profile.html",nm = res[0],age = res[1], gen = res[2], h = res[3], w = res[4], bg = res[5], all = res[6], hc = res[7],medicines = medicines,queue = queue)
 
 @app.route('/main/<username>', methods=['POST','GET'])
 def main(username):
@@ -109,6 +115,7 @@ def main(username):
 
 @app.route('/addMeds/<username>', methods=['POST','GET'])
 def addMeds(username):
+    global queue
     medicines  = list_meds(username)
     if request.method == "POST":
         button_clicked = request.form['add_delete']
@@ -126,6 +133,7 @@ def addMeds(username):
             t_night = request.form['t_night']
             if med != "" and days != 0:
                 add_meds(username,med,days,d_mor,d_noon,d_night,t_mor,t_noon,t_night)
+        queue = remind(username)
         return redirect(url_for("profile",username = username)) 
     else:
         return render_template("Medicines.html",medicines = medicines)
