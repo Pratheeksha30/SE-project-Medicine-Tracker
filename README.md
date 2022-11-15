@@ -19,11 +19,11 @@ The users include all age groups of humans and can also be extended for pet medi
 
 Clone the repository 
 ```
-git clone 
+git clone https://github.com/Pratheeksha30/SE-project-Medicine-Tracker
 ```
 
 To run the python file, open the terminal and type the following command.
 ```
-cd 
+cd SE-project-Medicine-Tracker
 python webpage.py
 ```
