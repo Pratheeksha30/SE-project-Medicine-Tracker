@@ -64,7 +64,8 @@ def remind(usid):
             else:
                 queue = [{'m':i[0],'t':i[8],'d':i[5]} for i in row if i[5] != 0 and now.replace(hour=int(i[8].split(':')[0]),minute=int(i[8].split(':')[1])) > now]
             # c.execute("UPDATE {} SET days = start - DATE();".format(usid))
-            c.execute("DELETE FROM {} where days < 1".format(usid))
+            sql = "DELETE FROM {} where days < 1".format(usid)
+            c.execute(sql)
             conn.commit()
             conn.close()
             queue.sort(key=lambda x:x['t'])
